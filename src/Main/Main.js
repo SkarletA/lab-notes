@@ -1,5 +1,5 @@
 import React from "react";
-import image from './img/image-principal.svg'
+import image from '../img/image-principal.svg'
 import './Main.css';
 
 export function Main() {

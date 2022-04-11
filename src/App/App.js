@@ -1,7 +1,14 @@
 import './App.css';
 import React from "react";
-import { Main } from './Main';
-import { NavBar } from './NavBar';
+import { Main } from '../Main/Main';
+import { NavBar } from '../NavBar/NavBar';
+// import {
+//   BrowserRouter,
+//   Routes,
+//   Route,
+// } from "react-router-dom";
+
+
 
 function App() {
   return (
