@@ -1,7 +1,15 @@
 import React from "react";
+import { NavBarBlog } from "./NavBarBlog";
+import './Blog.css';
 
 export function Blog() {
   return (
-    <h1>Hola aqui haremos los blogs</h1>
+    <section className="view-blog">
+      <NavBarBlog/>
+      <div className="blog">
+        <textarea className="blog-message" placeholder="Add a note:"></textarea>
+        <button className="btn-create-blog">+</button>
+      </div>
+    </section>
   );
 }

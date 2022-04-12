@@ -7,7 +7,9 @@ import './Login.css';
 
 export function Login({openModal, closeModal}) {
   const navigate = useNavigate();
+  
   if (!openModal) return null
+  
   const google = async (e) => {
     e.preventDefault();
     const userGoogle = await loginGoogle();

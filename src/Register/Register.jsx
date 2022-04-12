@@ -5,9 +5,11 @@ import './Register.css';
 
 
 
-export function Register(props){
+export function Register({openModalRegister, closeModalRegister}){
   const navigate = useNavigate();
-  if (!props.openModalRegister) return null
+
+  if (!openModalRegister) return null
+
   const submitRegistration = async (e) => {
     e.preventDefault();
     const expEmail = /^\w+([.+-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/;
@@ -18,7 +20,6 @@ export function Register(props){
       const user = await registration(email, password);
       navigate('/blog');
       console.log(user);
-      // props.setUser(user);
     } else {
       const alertEmailR = document.getElementById('alertEmailR');
       alertEmailR.innerHTML = '<span class="red"> Email or password invalid </span>';
@@ -28,7 +29,7 @@ export function Register(props){
   return (
     <section className ="register">
       <div className ="popup">
-      <button onClick={props.closeModalRegister} className ='btn-close'>X</button>
+      <button onClick={closeModalRegister} className ='btn-close'>X</button>
         <div className ="title">
           <p>Create an account</p>
           <h3>BlogSks</h3>
@@ -43,7 +44,7 @@ export function Register(props){
             placeholder="Password: "
           />
           <span id="alertEmailR" className="red"></span>
-          <button type='submit' className="btn-register">Register</button>
+          <button className="btn-register">Register</button>
         </form>
       </div>
     </section>

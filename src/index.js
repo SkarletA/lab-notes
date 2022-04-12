@@ -12,14 +12,11 @@ import {
 } from "react-router-dom";
 
 ReactDOM.render(
-  // <React.StrictMode>
-  //   <App />
-  // </React.StrictMode>,
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/blog" element={<Blog />} />
-      <Route path="*" element={<Navigate to='/'/>} />
+      <Route path="*" element={<Navigate replace to='/'/>} />
     </Routes>
   </BrowserRouter>,
 
