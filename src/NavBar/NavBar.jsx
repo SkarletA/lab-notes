@@ -10,7 +10,7 @@ export function NavBar() {
   
   
   return (
-    <>
+    <nav>
     <ul className="navbar">
       <ul className="logo-title">
         <img className="logo" src="https://svgshare.com/i/g5e.svg" alt="logo"/>
@@ -22,7 +22,7 @@ export function NavBar() {
     </ul>
     <Login openModal={openModal} closeModal={()=> setOpenModal(false)}/>
     <Register openModalRegister={openModalRegister} closeModalRegister={()=> setOpenModalRegister(false)}/>
-    </>
+    </nav>
     
 
   );

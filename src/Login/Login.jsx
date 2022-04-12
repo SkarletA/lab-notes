@@ -1,11 +1,12 @@
 import React from 'react';
 import { loginGoogle, signIn } from '../Firebase/firebase-auth';
+import { useNavigate } from "react-router-dom";
 import icon from '../img/icon-google(1).svg';
 import './Login.css'; 
 
 
 export function Login({openModal, closeModal}) {
-  // const [isRegister, setRegister] = React.useState(false);
+  const navigate = useNavigate();
   if (!openModal) return null
   const google = async (e) => {
     e.preventDefault();
@@ -13,6 +14,8 @@ export function Login({openModal, closeModal}) {
     if (!userGoogle) {
       const alertGoogle = document.getElementById('alertGoogle');
       alertGoogle.innerHTML = '<span class="red"> failed to login</span>';
+    } else {
+      navigate('/blog');
     }
   }
 
@@ -24,6 +27,7 @@ export function Login({openModal, closeModal}) {
     const password = document.getElementById('passwordLogin').value;
     if (expEmail.test(email) && expPassword.test(password)) {
       const logeduser = await signIn(email, password);
+      navigate('/blog');
       console.log('usuario registrado', logeduser);
     } else {
       const alertEmailR = document.getElementById('alert');

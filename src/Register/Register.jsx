@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { registration } from "../Firebase/firebase-auth";
 import './Register.css';
 
 
 
 export function Register(props){
+  const navigate = useNavigate();
   if (!props.openModalRegister) return null
   const submitRegistration = async (e) => {
     e.preventDefault();
@@ -14,6 +16,7 @@ export function Register(props){
     const password = document.getElementById('passwordR').value;
     if (expEmail.test(email) && expPassword.test(password)) {
       const user = await registration(email, password);
+      navigate('/blog');
       console.log(user);
       // props.setUser(user);
     } else {
