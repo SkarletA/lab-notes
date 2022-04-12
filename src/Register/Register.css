@@ -59,6 +59,13 @@ h3, p {
   padding-left: 0.5em;
   width: 15em;
 }
+.red{
+  color:red;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+  display: flex;
+  justify-content: center;
+}
 .btn-register {
   background-color: #7D1935;
   border: 0.2em solid white;
