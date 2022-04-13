@@ -5,6 +5,7 @@ import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "./firebase";
 
 // eslint-disable-next-line no-unused-expressions
@@ -54,4 +55,17 @@ export async function signIn(email, password) {
       user = null;
     });
   return user;
+}
+
+export async function logOut() {
+  let resultLogOut;
+  await signOut(auth)
+    .then(() => {
+      resultLogOut = true;
+    })
+
+    .catch(() => {
+      resultLogOut = false;
+    });
+  return resultLogOut;
 }

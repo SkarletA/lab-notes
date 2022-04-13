@@ -8,9 +8,9 @@ export function Main() {
       <h2 className="slogan">Write about what you like and passionate</h2>
       <p className="slogan-second">Create an attractive and original blog</p>
       <button className="create-blog">CREATE A  BLOG</button>
-      <pinture>
+      <div>
         <img className="img-principal" src={image} alt="img-principal"/>
-      </pinture>
+      </div>
     </section>
   );
 

@@ -1,0 +1,12 @@
+.logout {
+  text-decoration: none;
+  color:white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #7D1935;
+  border: 0;
+}
+.icon-logout {
+  height: 1.7em;
+}
