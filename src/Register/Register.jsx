@@ -1,12 +1,42 @@
-import React from "react";
+import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import { registration } from "../Firebase/firebase-auth";
 import './Register.css';
 
-
+import "../Firebase/firebase";
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { getAuth } from "firebase/auth";
+import { app } from "../Firebase/firebaseconfig";
 
 export function Register({openModalRegister, closeModalRegister}){
   const navigate = useNavigate();
+  
+  const auth = getAuth(app);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [
+    createUserWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useCreateUserWithEmailAndPassword(auth);
+  
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error.message}</p>
+      </div>
+    );
+  }
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (user) {
+    return (
+      <div>
+        <p>Registered User: {user.email}</p>
+      </div>
+    );
+  }
 
   if (!openModalRegister) return null
 
@@ -14,10 +44,8 @@ export function Register({openModalRegister, closeModalRegister}){
     e.preventDefault();
     const expEmail = /^\w+([.+-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/;
     const expPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
-    const email = document.getElementById('emailR').value;
-    const password = document.getElementById('passwordR').value;
     if (expEmail.test(email) && expPassword.test(password)) {
-      const user = await registration(email, password);
+      const user = await createUserWithEmailAndPassword(email, password);
       navigate('/blog');
       console.log(user);
     } else {
@@ -35,16 +63,23 @@ export function Register({openModalRegister, closeModalRegister}){
           <h3>BlogSks</h3>
           <p>it is easy and simple</p>
         </div>
-        <form className="form-register" onClick={submitRegistration}>
-          <input className="input-email" id="emailR" type="email" placeholder="Email: " />
+        <form className="form-register">
+          <input className="input-email" 
+          id="emailR" 
+          type="email" 
+          placeholder="Email: " 
+          onChange={(e)=> setEmail(e.target.value)}/>
           <input
             className="input-password"
             id="passwordR"
             type="password"
             placeholder="Password: "
+            onChange={(e)=> setPassword(e.target.value)}
           />
           <span id="alertEmailR" className="red"></span>
-          <button className="btn-register">Register</button>
+          <button className="btn-register" 
+          onClick={submitRegistration}
+          >Register</button>
         </form>
       </div>
     </section>

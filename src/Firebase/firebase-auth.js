@@ -1,12 +1,11 @@
-import { app } from "./firabaseconfig";
+import { app } from "./firebaseconfig";
 import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
   signOut,
 } from "./firebase";
+
 
 // eslint-disable-next-line no-unused-expressions
 app;
@@ -16,46 +15,23 @@ const provider = new GoogleAuthProvider();
 auth.languageCode = 'es';
 
 export async function loginGoogle() {
-  let results;
+  let credential;
   await signInWithPopup(auth, provider)
     .then((result) => {
-      results = result;
+      credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
     })
     .catch((error) => {
+      const errorCode = error.code;
       const errorMsg = error.message;
-      console.log(errorMsg);
-      results = false;
+      const errorEmail = error.email;
+      credential = GoogleAuthProvider.credentialFromError(error);
     });
-  return results;
+  return credential;
 }
 
-export async function registration(email, password) {
-  let user;
-  await createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      user = userCredential.user;
-    })
-    .catch((error) => {
-      const errorMsg = error.message;
-      console.log(errorMsg);
-      user = null;
-    });
-  return user;
-}
 
-export async function signIn(email, password) {
-  let user;
-  await signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      user = userCredential.user;
-    })
-    .catch((error) => {
-      const errorMsg = error.message;
-      console.log(errorMsg);
-      user = null;
-    });
-  return user;
-}
 
 export async function logOut() {
   let resultLogOut;
