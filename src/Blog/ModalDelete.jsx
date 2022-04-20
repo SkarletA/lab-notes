@@ -12,7 +12,6 @@ export function ModalDelete({ openModalDelete, closeModalDelete, currentId }) {
   const onDeleteBlog = async (id) => {
     await deleteDoc(doc(db, 'blogs', id));
   };
-  console.log(currentId);
 
   if (!openModalDelete) return null;
   return (

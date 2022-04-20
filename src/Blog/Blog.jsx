@@ -7,7 +7,6 @@ import {
   collection,
   addDoc,
   onSnapshot,
-  // deleteDoc,
   doc,
   updateDoc,
 } from '../Firebase/firebase';
@@ -31,12 +30,6 @@ export function Blog() {
     }
     setCurrentId('');
   };
-
-  // const onDeleteBlog = async (id) => {
-  //   if (window.confirm('are you sure want to delete this note')) {
-  //     await deleteDoc(doc(db, 'blogs', id));
-  //   }
-  // };
 
   const getBlogs = async () => {
     onSnapshot(collection(db, 'blogs'), (querySnapshot) => {
@@ -77,7 +70,6 @@ export function Blog() {
                 <button
                   type="button"
                   className="icon-delete"
-                  // onClick={() => onDeleteBlog(blog.id)}
                   onClick={() => {
                     setOpenModalDelete(true);
                     setCurrentId(blog.id);

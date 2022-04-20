@@ -6,17 +6,18 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Navigate,
 } from 'react-router-dom';
 import App from './App/App';
 import { Blog } from './Blog/Blog';
+import { NotFound } from './NotFound/NotFound';
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/blog" element={<Blog />} />
-      <Route path="*" element={<Navigate replace to="/" />} />
+      {/* <Route path="*" element={<Navigate replace to="/" />} /> */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   </BrowserRouter>,
 
