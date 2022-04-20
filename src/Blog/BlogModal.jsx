@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/prefer-default-export */
 import React, { useState, useEffect } from 'react';
@@ -31,7 +32,6 @@ export function BlogModal({
   const saveDataBlog = async () => {
     addOrEditBlog(values);
     setValues({ ...valuesBlogs });
-    console.log(values);
   };
 
   const getBlogById = async (id) => {
@@ -79,9 +79,12 @@ export function BlogModal({
           <button
             type="button"
             className="btn-save-blog"
-            onClick={saveDataBlog}
+            onClick={() => {
+              saveDataBlog();
+              closeModal();
+            }}
           >
-            {currentId === '' ? 'Save' : 'update'}
+            {currentId === '' ? 'Save' : 'Update'}
           </button>
         </div>
       </div>

@@ -67,6 +67,7 @@
 .btn-close-popup:hover {
   transform: rotate(224deg);
 }
+
 .btn-save-blog {
   background-color: #7D1935;
   border: 0.2em solid white;

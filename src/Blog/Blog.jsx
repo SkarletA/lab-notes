@@ -7,17 +7,18 @@ import {
   collection,
   addDoc,
   onSnapshot,
-  deleteDoc,
+  // deleteDoc,
   doc,
   updateDoc,
 } from '../Firebase/firebase';
 import { db } from '../Firebase/firebaseconfig';
 import iDelete from '../img/icon-delete.svg';
 import iEdit from '../img/icon-lapiz.svg';
-// import { saveData } from '../Firebase/firestore';
+import { ModalDelete } from './ModalDelete';
 
 export function Blog() {
   const [openModal, setOpenModal] = useState(false);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
 
   const [blogs, setBlogs] = useState([]);
   const [currentId, setCurrentId] = useState('');
@@ -31,22 +32,19 @@ export function Blog() {
     setCurrentId('');
   };
 
-  const onDeleteBlog = async (id) => {
-    if (window.confirm('are you sure want to delete this note')) {
-      await deleteDoc(doc(db, 'blogs', id));
-    }
-  };
-  console.log(blogs);
+  // const onDeleteBlog = async (id) => {
+  //   if (window.confirm('are you sure want to delete this note')) {
+  //     await deleteDoc(doc(db, 'blogs', id));
+  //   }
+  // };
 
   const getBlogs = async () => {
-    console.log('entreeeeee');
     onSnapshot(collection(db, 'blogs'), (querySnapshot) => {
       const docs = [];
       // eslint-disable-next-line no-shadow
       querySnapshot.forEach((doc) => {
         docs.push({ ...doc.data(), id: doc.id });
       });
-      console.log(docs);
       setBlogs(docs);
     });
   };
@@ -65,7 +63,7 @@ export function Blog() {
             className="create-blog"
             onClick={() => setOpenModal(true)}
           >
-            CREATE A BLOG
+            CREATE A NOTE
           </button>
         </div>
         <section className="all-blogs">
@@ -79,14 +77,18 @@ export function Blog() {
                 <button
                   type="button"
                   className="icon-delete"
-                  onClick={() => onDeleteBlog(blog.id)}
+                  // onClick={() => onDeleteBlog(blog.id)}
+                  onClick={() => {
+                    setOpenModalDelete(true);
+                    setCurrentId(blog.id);
+                  }}
                 >
                   <img src={iDelete} alt="icon-delete" />
                 </button>
                 <button
                   type="button"
                   className="icon-edit"
-                  onClick={function () {
+                  onClick={() => {
                     setOpenModal(true);
                     setCurrentId(blog.id);
                   }}
@@ -104,6 +106,11 @@ export function Blog() {
         addOrEditBlog={addOrEditBlog}
         openModal={openModal}
         closeModal={() => setOpenModal(false)}
+      />
+      <ModalDelete
+        openModalDelete={openModalDelete}
+        closeModalDelete={() => setOpenModalDelete(false)}
+        currentId={currentId}
       />
     </section>
   );
