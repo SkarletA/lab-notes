@@ -10,6 +10,9 @@
   right: -10px;
   top: -10px;
 }
+.container-extern {
+  background-color: #7D1935;
+}
 .title-note{
   color:#7D1935;
   font-size: 1.5em;

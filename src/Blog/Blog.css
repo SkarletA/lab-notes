@@ -21,3 +21,45 @@
   margin:2em;
   width: 15em;
 }
+.all-blogs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.card-blogs {
+  background-image: url("../img/Icon-blog (1).svg");
+  background-repeat: no-repeat;
+  height: 15em;
+  width: 15em;
+  display: flex;
+  flex-direction: column;
+}
+.title-blog-note {
+  color: #7D1935;
+  margin-top: 2.5em;
+  margin-left: 1.5em;
+  font-size: 0.9em;
+}
+.message-note {
+  display: flex;
+  align-items: flex-start;
+  margin-left: 2.4em;
+  font-size: 0.6em;
+}
+.btns{
+  display: flex;
+  justify-content: center;
+}
+.icon-delete, .icon-edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 2.2em;
+  width: 3em;
+  border: 0;
+  background-color: #FCEBE1;
+  cursor: pointer;
+  margin-top: 1em;
+}
