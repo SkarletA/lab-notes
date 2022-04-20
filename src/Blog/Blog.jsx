@@ -9,6 +9,7 @@ import {
   onSnapshot,
   deleteDoc,
   doc,
+  updateDoc,
 } from '../Firebase/firebase';
 import { db } from '../Firebase/firebaseconfig';
 import iDelete from '../img/icon-delete.svg';
@@ -22,7 +23,12 @@ export function Blog() {
   const [currentId, setCurrentId] = useState('');
 
   const addOrEditBlog = async (values) => {
-    await addDoc(collection(db, 'blogs'), values);
+    if (currentId === '') {
+      await addDoc(collection(db, 'blogs'), values);
+    } else {
+      await updateDoc(doc(db, 'blogs', currentId), values);
+    }
+    setCurrentId('');
   };
 
   const onDeleteBlog = async (id) => {

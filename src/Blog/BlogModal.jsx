@@ -2,8 +2,8 @@
 /* eslint-disable import/prefer-default-export */
 import React, { useState, useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
-// import { updateDoc, doc } from '../Firebase/firebase';
-// import { db } from '../Firebase/firebaseconfig';
+import { getDoc, doc } from '../Firebase/firebase';
+import { db } from '../Firebase/firebaseconfig';
 import './BlogModal.css';
 
 // eslint-disable-next-line react/prop-types
@@ -34,19 +34,16 @@ export function BlogModal({
     console.log(values);
   };
 
-  // const updateBlogById = async (id)=> {
-  //   const updateNote = blogs.find((blog) => blog.id === currentId);
-  //   setValues({...updateNote})
-  //   // await updateDoc(doc(db, 'blogs', id), valuesBlogs);
-  // }
+  const getBlogById = async (id) => {
+    const docB = await getDoc(doc(db, 'blogs', id));
+    setValues({ ...docB.data() });
+  };
 
   useEffect(() => {
     if (currentId === '') {
       setValues({ ...valuesBlogs });
     } else {
-      // const test = blogs.find((blog) => blog.id === currentId)
-      // setValues({...test})
-      // updateBlogById(currentId)
+      getBlogById(currentId);
     }
   }, [currentId]);
 
@@ -63,7 +60,7 @@ export function BlogModal({
           >
             X
           </button>
-          <p className="title-note">Create note</p>
+          <p className="title-note">{currentId === '' ? 'Create note' : 'Update note'}</p>
           <input
             className="title-blog"
             type="text"
@@ -84,7 +81,7 @@ export function BlogModal({
             className="btn-save-blog"
             onClick={saveDataBlog}
           >
-            Save
+            {currentId === '' ? 'Save' : 'update'}
           </button>
         </div>
       </div>
