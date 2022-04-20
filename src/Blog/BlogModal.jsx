@@ -56,7 +56,7 @@ export function BlogModal({openModal, closeModal, addOrEditBlog, currentId, blog
         <input className="title-blog"
         type="text" 
         placeholder="Title:"
-        name="title"
+        name="tittle"
         value={values.tittle}
         onChange={inputChange}
         />
