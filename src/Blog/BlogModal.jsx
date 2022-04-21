@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import { getDoc, doc } from '../Firebase/firebase';
 import { db } from '../Firebase/firebaseconfig';
-import './BlogModal.css';
+import style from './BlogModal.module.css';
 
 // eslint-disable-next-line react/prop-types
 export function BlogModal({
@@ -50,19 +50,19 @@ export function BlogModal({
   if (!openModal) return null;
 
   return (
-    <section className="container-popup">
-      <div className="container-extern">
-        <div className="popup-blog">
+    <section className={style.containerPopup}>
+      <div className={style.containerExtern}>
+        <div className={style.popupBlog}>
           <button
             type="button"
-            className="btn-close-popup"
+            className={style.btnClosePopup}
             onClick={closeModal}
           >
             X
           </button>
-          <p className="title-note">{currentId === '' ? 'Create note' : 'Update note'}</p>
+          <p className={style.titleNote}>{currentId === '' ? 'Create note' : 'Update note'}</p>
           <input
-            className="title-blog"
+            className={style.titleBlog}
             type="text"
             placeholder="Title:"
             name="tittle"
@@ -70,7 +70,7 @@ export function BlogModal({
             onChange={inputChange}
           />
           <textarea
-            className="blog-message"
+            className={style.blogMessage}
             placeholder="Add a note: "
             name="message"
             value={values.message}
@@ -78,7 +78,7 @@ export function BlogModal({
           />
           <button
             type="button"
-            className="btn-save-blog"
+            className={style.btnSaveBlog}
             onClick={() => {
               saveDataBlog();
               closeModal();

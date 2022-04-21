@@ -5,7 +5,7 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { loginGoogle } from '../Firebase/firebase-auth';
 import icon from '../img/icon-google(1).svg';
-import './Login.css';
+import style from './Login.module.css';
 import { app } from '../Firebase/firebaseconfig';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -69,9 +69,8 @@ export function Login({ openModal, closeModal }) {
     const expPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
 
     if (expEmail.test(email) && expPassword.test(password)) {
-      const logeduser = await signInWithEmailAndPassword(email, password);
+      await signInWithEmailAndPassword(email, password);
       navigate('/blog');
-      console.log('usuario registrado', logeduser);
     } else {
       const alertEmailR = document.getElementById('alert');
       alertEmailR.innerHTML = '<span class="red"> Email or password invalid </span>';
@@ -80,30 +79,30 @@ export function Login({ openModal, closeModal }) {
 
   return (
     <section
-      className="login"
+      className={style.login}
     >
-      <div className="popup">
+      <div className={style.popup}>
         <button
           type="button"
-          className="btn-close"
+          className={style.btnClose}
           onClick={closeModal}
         >
           X
         </button>
-        <div className="title">
+        <div className={style.title}>
           <p>Login in</p>
           <h3>BlogSks</h3>
         </div>
-        <form className="form-login">
+        <form className={style.formLogin}>
           <input
-            className="input-email"
+            className={style.inputEmail}
             id="emailLogin"
             type="email"
             placeholder="Email: "
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            className="input-password"
+            className={style.inputPassword}
             id="passwordLogin"
             type="password"
             placeholder="Password: "
@@ -111,26 +110,26 @@ export function Login({ openModal, closeModal }) {
           />
           <span
             id="alert"
-            className="red"
+            className={style.red}
           />
           <button
             type="button"
             onClick={loginIn}
-            className="btn-login"
+            className={style.btnLogin}
           >
             Login
           </button>
           <button
             type="button"
             onClick={google}
-            className="btn-google"
+            className={style.btnGoogle}
           >
             Login with
-            <img className="icon-google" src={icon} alt="icon-google" />
+            <img className={style.iconGoogle} src={icon} alt="icon-google" />
           </button>
           <span
             id="alertGoogle"
-            className="red"
+            className={style.red}
           />
         </form>
       </div>

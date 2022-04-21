@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import React, { useEffect, useState } from 'react';
 import { NavBarBlog } from './NavBarBlog';
-import './Blog.css';
+import style from './Blog.module.css';
 import { BlogModal } from './BlogModal';
 import {
   collection,
@@ -47,29 +47,29 @@ export function Blog() {
   }, []);
 
   return (
-    <section className="view-blog">
+    <section className={style.viewBlog}>
       <NavBarBlog />
-      <section className="blog">
+      <section className={style.blog}>
         <div className="container">
           <button
             type="button"
-            className="create-blog"
+            className={style.createBlog}
             onClick={() => setOpenModal(true)}
           >
             CREATE A NOTE
           </button>
         </div>
-        <section className="all-blogs">
+        <section className={style.allBlogs}>
           {blogs.map((blog) => (
-            <div className="card-blogs" key={blog.id}>
-              <h4 className="title-blog-note">{blog.tittle}</h4>
-              <p className="message-note">
+            <div className={style.cardBlogs} key={blog.id}>
+              <h4 className={style.titleBlogNote}>{blog.tittle}</h4>
+              <p className={style.messageNote}>
                 {blog.message}
               </p>
-              <div className="btns">
+              <div className={style.btns}>
                 <button
                   type="button"
-                  className="icon-delete"
+                  className={style.iconDelete}
                   onClick={() => {
                     setOpenModalDelete(true);
                     setCurrentId(blog.id);
@@ -79,7 +79,7 @@ export function Blog() {
                 </button>
                 <button
                   type="button"
-                  className="icon-edit"
+                  className={style.iconEdit}
                   onClick={() => {
                     setOpenModal(true);
                     setCurrentId(blog.id);

@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import './Register.css';
 import { getAuth } from 'firebase/auth';
+import style from './Register.module.css';
 import { loginGoogle } from '../Firebase/firebase-auth';
 import { app } from '../Firebase/firebaseconfig';
 import '../Firebase/firebase';
@@ -66,9 +66,8 @@ export function Register({ openModalRegister, closeModalRegister }) {
     const expPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
     if (expEmail.test(email) && expPassword.test(password)) {
       // eslint-disable-next-line no-shadow
-      const user = await createUserWithEmailAndPassword(email, password);
+      await createUserWithEmailAndPassword(email, password);
       navigate('/blog');
-      console.log(user);
     } else {
       const alertEmailR = document.getElementById('alertEmailR');
       alertEmailR.innerHTML = '<span class="red"> Email or password invalid </span>';
@@ -76,38 +75,38 @@ export function Register({ openModalRegister, closeModalRegister }) {
   };
   return (
     <section
-      className="register"
+      className={style.register}
     >
-      <div className="popup">
+      <div className={style.popup}>
         <button
           type="button"
-          className="btn-close"
+          className={style.btnClose}
           onClick={closeModalRegister}
         >
           X
         </button>
-        <div className="title">
+        <div className={style.title}>
           <p>Create an account</p>
           <h3>BlogSks</h3>
           <p>it is easy and simple</p>
         </div>
-        <form className="form-register">
+        <form className={style.formRegister}>
           <input
-            className="input-email"
+            className={style.inputName}
             id="emailR"
             type="text"
             placeholder="Name: "
             // onChange={(e)=> setEmail(e.target.value)}
           />
           <input
-            className="input-email"
+            className={style.inputEmail}
             id="emailR"
             type="email"
             placeholder="Email: "
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            className="input-password"
+            className={style.inputPassword}
             id="passwordR"
             type="password"
             placeholder="Password: "
@@ -115,11 +114,11 @@ export function Register({ openModalRegister, closeModalRegister }) {
           />
           <span
             id="alertEmailR"
-            className="red"
+            className={style.red}
           />
           <button
             type="button"
-            className="btn-register"
+            className={style.btnRegister}
             onClick={submitRegistration}
           >
             Register
@@ -127,10 +126,10 @@ export function Register({ openModalRegister, closeModalRegister }) {
           <button
             type="button"
             onClick={google}
-            className="btn-google"
+            className={style.btnGoogle}
           >
             Register with
-            <img className="icon-google" src={icon} alt="icon-google" />
+            <img className={style.iconGoogle} src={icon} alt="icon-google" />
           </button>
         </form>
       </div>
