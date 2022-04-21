@@ -1,15 +1,43 @@
-// /* eslint-disable no-undef */
-// import React from 'react';
-// import '@testing-library/jest-dom/extend-expect';
-// import { render } from '@testing-library/react';
-// import { NavBarBlog } from './NavBarBlog';
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-undef */
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { create, act, TestRenderer } from 'react-test-renderer';
+import '@testing-library/jest-dom/extend-expect';
+import { NavBarBlog } from './NavBarBlog';
 
-// test('render content', () => {
-//   const note = {
-//     content: 'BlogSks',
-//     important: true,
-//   };
-//   // eslint-disable-next-line react/jsx-filename-extension
-//   const component = render(<NavBarBlog note={note} />);
-//   component.getByText('BlogSks');
-// });
+describe(('Test component NavBarBlog'), () => {
+  test('render component NavBarBlog', () => {
+    let navbarBlog;
+    act(() => {
+      navbarBlog = create(
+        <Router>
+          <NavBarBlog />
+        </Router>,
+      );
+      expect(navbarBlog.toJSON()).toMatchSnapshot();
+    });
+  });
+
+  test('create a element dom', () => {
+    const testRender = create(
+      <Router>
+        <NavBarBlog />
+      </Router>,
+    );
+    const testInstance = testRender.root;
+    expect(testInstance.findByProps({ className: 'titleApp' }).children).toEqual(['BlogSks']);
+  });
+  // test('create a element dom', () => {
+  //   function TestNavBarBlog() {
+  //     return (
+  //       <nav>
+  //         <h1 className="titleApp">Blog</h1>
+  //       </nav>
+  //     );
+  //   }
+  //   const testRender = create(<TestNavBarBlog />);
+  //   const testInstance = testRender.root;
+  //   expect(testInstance.findByProps({ className: 'titleApp' }).children).toEqual(['Blog']);
+  // });
+});
