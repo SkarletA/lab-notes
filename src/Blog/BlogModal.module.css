@@ -1,4 +1,4 @@
-.container-popup {
+.containerPopup {
   align-items: center;
   background: rgba(32,35,41,.5);
   bottom: -10px;
@@ -10,15 +10,15 @@
   right: -10px;
   top: -10px;
 }
-.container-extern {
+.containerExtern {
   background-color: #7D1935;
 }
-.title-note{
+.titleNote{
   color:#7D1935;
   font-size: 1.5em;
   font-weight: bold;
 }
-.popup-blog {
+.popupBlog {
   align-items: center;
   width: 25em;
   height: 25em;
@@ -28,7 +28,7 @@
   flex-direction: column;
 }
 
-.blog-message {
+.blogMessage {
   font-size: 1em;
   font-family: Arial, Helvetica, sans-serif;
   width: 23em;
@@ -36,7 +36,7 @@
   border:0.1em solid #7D1935;
   padding-left: 0.3em;
 }
-.title-blog {
+.titleBlog {
   font-size: 1em;
   width: 23em;
   height: 2em;
@@ -45,7 +45,7 @@
   padding-left: 0.3em;
 }
 
-.btn-close-popup {
+.btnClosePopup {
   background-color: #7D1935 ;
   box-shadow: 0px 5px 25px rgba(55, 59, 59, 0.5);
   border: none;
@@ -64,10 +64,11 @@
   transform: rotate(0);
   transition: .3s ease;
 }
-.btn-close-popup:hover {
+.btnClosePopup:hover {
   transform: rotate(224deg);
 }
-.btn-save-blog {
+
+.btnSaveBlog {
   background-color: #7D1935;
   border: 0.2em solid white;
   border-radius: 0.8em;

@@ -1,11 +1,11 @@
-import { app } from "./firebaseconfig";
+/* eslint-disable no-unused-vars */
+import { app } from './firebaseconfig';
 import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
-} from "./firebase";
-
+} from './firebase';
 
 // eslint-disable-next-line no-unused-expressions
 app;
@@ -20,7 +20,7 @@ export async function loginGoogle() {
     .then((result) => {
       credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
-      const user = result.user;
+      const { user } = result;
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -30,8 +30,6 @@ export async function loginGoogle() {
     });
   return credential;
 }
-
-
 
 export async function logOut() {
   let resultLogOut;

@@ -1,5 +1,4 @@
-
-.register {
+.login {
   align-items: center;
   background: rgba(32,35,41,.8);
   bottom: -10px;
@@ -10,7 +9,8 @@
   position: fixed;
   right: -10px;
   top: -10px;
-}
+  }
+
 .popup{
   align-items: center;
   background-color: #FFE3D8;
@@ -22,7 +22,15 @@
   justify-content: center;
   width: 20em;
 }
-.btn-close {
+
+.formLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btnClose {
   background-color: #7D1935 ;
   box-shadow: 0px 5px 25px rgba(55, 59, 59, 0.5);
   border: none;
@@ -36,13 +44,14 @@
   align-items: center;
   height: 1.5em;
   width: 1.5em;
+  margin-top: 0.2em;
   margin-left: 12em;
   transform: rotate(0);
   transition: .3s ease;
 }
 
-.register button:hover {
-  color: blue;
+.btnClose:hover {
+  transform: rotate(224deg);
 }
 
 h3, p {
@@ -54,7 +63,7 @@ h3, p {
   margin-block-end: 0;
   margin:0.5em;
 }
-.input-email, .input-password {
+.inputEmail, .inputPassword {
   align-items: center;
   background-color: white;
   border: 0.2em solid #7D1935;
@@ -67,19 +76,30 @@ h3, p {
   padding-left: 0.5em;
   width: 15em;
 }
-.red{
-  color:red;
-  margin-top: 0.1em;
-  margin-bottom: 0.1em;
-  display: flex;
-  justify-content: center;
-}
-.btn-register {
+
+.btnLogin {
   background-color: #7D1935;
   border: 0.2em solid white;
   border-radius: 0.8em;
   color: white;
   cursor: pointer;
   height: 3em;
-  width: 15em;
+  margin-bottom: 0.5em;
+  width: 16em;
+}
+.btnGoogle {
+  background-color: white;
+  border: 0.2em solid #7D1935;
+  border-radius: 0.8em;
+  color: #7D1935;
+  cursor: pointer;
+  height: 3em;
+  width: 16em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconGoogle {
+  padding-left: 0.5em;
+
 }

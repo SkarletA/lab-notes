@@ -1,86 +1,109 @@
-import React, { useEffect, useState } from "react";
-import { NavBarBlog } from "./NavBarBlog";
-import './Blog.css';
-import { BlogModal } from "./BlogModal";
-import { collection, addDoc, onSnapshot, deleteDoc, doc } from "../Firebase/firebase";
-import { db } from "../Firebase/firebaseconfig";
-import iDelete from "../img/icon-delete.svg"
-import iEdit from '../img/icon-lapiz.svg'
-// import { saveData } from "../Firebase/firestore";
+/* eslint-disable import/prefer-default-export */
+import React, { useEffect, useState } from 'react';
+import { NavBarBlog } from './NavBarBlog';
+import style from './Blog.module.css';
+import { BlogModal } from './BlogModal';
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  doc,
+  updateDoc,
+} from '../Firebase/firebase';
+import { db } from '../Firebase/firebaseconfig';
+import iDelete from '../img/icon-delete.svg';
+import iEdit from '../img/icon-lapiz.svg';
+import { ModalDelete } from './ModalDelete';
 
 export function Blog() {
   const [openModal, setOpenModal] = useState(false);
-  
+  const [openModalDelete, setOpenModalDelete] = useState(false);
+
   const [blogs, setBlogs] = useState([]);
   const [currentId, setCurrentId] = useState('');
 
   const addOrEditBlog = async (values) => {
-    await addDoc(collection(db, 'blogs'), values)
-  }
-
-  const onDeleteBlog = async (id)=> {
-    if (window.confirm("are you sure want to delete this note")) {
-      await deleteDoc(doc(db, 'blogs', id))
+    if (currentId === '') {
+      await addDoc(collection(db, 'blogs'), values);
+    } else {
+      await updateDoc(doc(db, 'blogs', currentId), values);
     }
-  }
-  console.log(blogs)
+    setCurrentId('');
+  };
 
   const getBlogs = async () => {
-    console.log('entreeeeee')
-    onSnapshot(collection(db, 'blogs'), (querySnapshot)=>{
-      const docs =[];
-      querySnapshot.forEach((doc)=> {
-        docs.push({...doc.data(), id:doc.id})
-      })
-      console.log(docs);
-      setBlogs(docs)
+    onSnapshot(collection(db, 'blogs'), (querySnapshot) => {
+      const docs = [];
+      // eslint-disable-next-line no-shadow
+      querySnapshot.forEach((doc) => {
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      setBlogs(docs);
     });
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     getBlogs();
-
   }, []);
 
   return (
-    <section className="view-blog">
-      <NavBarBlog/>
-      <section className="blog">
+    <section className={style.viewBlog}>
+      <NavBarBlog />
+      <section className={style.blog}>
         <div className="container">
-          <button 
-          className="create-blog"
-          onClick={()=> setOpenModal(true)}
-          >CREATE A BLOG</button>
+          <button
+            type="button"
+            className={style.createBlog}
+            onClick={() => setOpenModal(true)}
+          >
+            CREATE A NOTE
+          </button>
         </div>
-        <section className="all-blogs">
-          {blogs.map(blog => (
-            <div className="card-blogs" key={blog.id}>
-              <h4 className="title-blog-note">{blog.tittle}</h4>
-              <p className="message-note"> {blog.message}</p>
-              <div className="btns">
-                <button className="icon-delete" 
-                onClick={() => onDeleteBlog(blog.id)}
-                ><img src={iDelete} alt="icon-delete"/></button>
-                <button className="icon-edit"
-                onClick={function(){
+        <section className={style.allBlogs}>
+          {blogs.map((blog) => (
+            <div className={style.cardBlogs} key={blog.id}>
+              <h4 className={style.titleBlogNote}>{blog.tittle}</h4>
+              <p className={style.messageNote}>
+                {blog.message}
+              </p>
+              <div className={style.btns}>
+                <button
+                  type="button"
+                  className={style.iconDelete}
+                  onClick={() => {
+                    setOpenModalDelete(true);
+                    setCurrentId(blog.id);
+                  }}
+                >
+                  <img src={iDelete} alt="icon-delete" />
+                </button>
+                <button
+                  type="button"
+                  className={style.iconEdit}
+                  onClick={() => {
                     setOpenModal(true);
                     setCurrentId(blog.id);
-                  }
-                }
-                ><img src={iEdit} alt="icon-edit"/></button>
+                  }}
+                >
+                  <img src={iEdit} alt="icon-edit" />
+                </button>
               </div>
-              
             </div>
-          )
-          )}
+          ))}
         </section>
       </section>
-      <BlogModal 
-      currentId={currentId}
-      blogs={blogs}
-      addOrEditBlog={addOrEditBlog} 
-      openModal={openModal} 
-      closeModal={()=> setOpenModal(false)}/>
+      <BlogModal
+        currentId={currentId}
+        blogs={blogs}
+        addOrEditBlog={addOrEditBlog}
+        openModal={openModal}
+        closeModal={() => setOpenModal(false)}
+      />
+      <ModalDelete
+        openModalDelete={openModalDelete}
+        closeModalDelete={() => setOpenModalDelete(false)}
+        currentId={currentId}
+      />
     </section>
   );
 }

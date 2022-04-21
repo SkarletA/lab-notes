@@ -1,4 +1,7 @@
-export { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
+// eslint-disable-next-line import/extensions
+export { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js';
 
 export {
   getAuth,
@@ -9,8 +12,7 @@ export {
   updateProfile,
   onAuthStateChanged,
   signOut,
-} from "https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js";
-
+} from 'https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js';
 
 export {
   getFirestore,
@@ -23,4 +25,4 @@ export {
   collection,
   addDoc,
 
-} from "https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js";
+} from 'https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js';

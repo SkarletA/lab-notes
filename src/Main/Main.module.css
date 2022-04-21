@@ -1,4 +1,4 @@
-.section-slogan {
+.sectionSlogan {
   align-items: center;
   color: #7D1935;
   display: flex;
@@ -6,7 +6,7 @@
   text-align: center;
 }
 
-.create-blog {
+.createBlog {
   background-color: #7D1935;
   border: 0.2em solid white;
   border-radius: 0.8em;
@@ -15,7 +15,7 @@
   height: 3em;
   width: 15em;
 }
-.img-principal {
+.imgPrincipal {
   margin-top: 2em;
   height: 80%;
   width: 80%;
