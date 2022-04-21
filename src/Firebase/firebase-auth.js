@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { app } from './firebaseconfig';
 import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
-} from './firebase';
+} from 'firebase/auth';
+import { app } from './firebaseconfig';
 
 // eslint-disable-next-line no-unused-expressions
 app;

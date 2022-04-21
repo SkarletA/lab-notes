@@ -7,7 +7,7 @@ import style from './Register.module.css';
 import { loginGoogle } from '../Firebase/firebase-auth';
 import { app } from '../Firebase/firebaseconfig';
 import '../Firebase/firebase';
-import icon from '../img/icon-google(1).svg';
+import icon from '../img/icon-google.svg';
 
 // eslint-disable-next-line react/prop-types
 export function Register({ openModalRegister, closeModalRegister }) {
@@ -56,7 +56,7 @@ export function Register({ openModalRegister, closeModalRegister }) {
       const alertGoogle = document.getElementById('alertGoogle');
       alertGoogle.innerHTML = '<span class="red"> failed to login</span>';
     } else {
-      navigate('/blog');
+      navigate('/blog', { replace: true });
     }
   };
 
@@ -67,7 +67,7 @@ export function Register({ openModalRegister, closeModalRegister }) {
     if (expEmail.test(email) && expPassword.test(password)) {
       // eslint-disable-next-line no-shadow
       await createUserWithEmailAndPassword(email, password);
-      navigate('/blog');
+      navigate('/blog', { replace: true });
     } else {
       const alertEmailR = document.getElementById('alertEmailR');
       alertEmailR.innerHTML = '<span class="red"> Email or password invalid </span>';
@@ -96,7 +96,6 @@ export function Register({ openModalRegister, closeModalRegister }) {
             id="emailR"
             type="text"
             placeholder="Name: "
-            // onChange={(e)=> setEmail(e.target.value)}
           />
           <input
             className={style.inputEmail}
