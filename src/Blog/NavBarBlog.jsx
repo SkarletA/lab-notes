@@ -24,7 +24,7 @@ export function NavBarBlog() {
         <li>
           <button
             type="button"
-            onClick={btnLogout}
+            onClick={(e) => btnLogout(e)}
             className={style.btnLogout}
           >
             <img className={style.iconLogOut} src={iconLogOut} alt="icon-logout" />

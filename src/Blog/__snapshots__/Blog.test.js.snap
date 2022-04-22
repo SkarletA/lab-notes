@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test component Blog render component Blog 1`] = `
+<section
+  className="viewBlog"
+>
+  <nav>
+    <ul
+      className="navbar"
+    >
+      <ul
+        className="logoTitle"
+      >
+        <img
+          alt="logo"
+          className="logo"
+          src="https://svgshare.com/i/g5e.svg"
+        />
+        <h1
+          className="titleApp"
+        >
+          BlogSks
+        </h1>
+      </ul>
+      <li>
+        <button
+          className="btnLogout"
+          onClick={[Function]}
+          type="button"
+        >
+          <img
+            alt="icon-logout"
+            className="iconLogOut"
+            src="Log_Out.svg"
+          />
+          LogOut
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <section
+    className="blog"
+  >
+    <div
+      className="container"
+    >
+      <button
+        className="createBlog"
+        onClick={[Function]}
+        type="button"
+      >
+        CREATE A NOTE
+      </button>
+    </div>
+    <section
+      className="allBlogs"
+    />
+  </section>
+</section>
+`;
