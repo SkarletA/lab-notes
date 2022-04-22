@@ -1,25 +1,16 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from 'react-router-dom';
+// import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './App/App';
-import { Blog } from './Blog/Blog';
-import { NotFound } from './NotFound/NotFound';
+import './App/App.module.css';
 
-ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/blog" element={<Blog />} />
-      {/* <Route path="*" element={<Navigate replace to="/" />} /> */}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  </BrowserRouter>,
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(<App />);
 
-  document.getElementById('root'),
-);
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+//   document.getElementById('root'),
+// );

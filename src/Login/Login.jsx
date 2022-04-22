@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { loginGoogle } from '../Firebase/firebase-auth';
-import icon from '../img/icon-google(1).svg';
+import icon from '../img/icon-google.svg';
 import style from './Login.module.css';
 import { app } from '../Firebase/firebaseconfig';
 
@@ -59,7 +59,7 @@ export function Login({ openModal, closeModal }) {
       const alertGoogle = document.getElementById('alertGoogle');
       alertGoogle.innerHTML = '<span class="red"> failed to login</span>';
     } else {
-      navigate('/blog');
+      navigate('/blog', { replace: true });
     }
   };
 
@@ -70,7 +70,7 @@ export function Login({ openModal, closeModal }) {
 
     if (expEmail.test(email) && expPassword.test(password)) {
       await signInWithEmailAndPassword(email, password);
-      navigate('/blog');
+      navigate('/blog', { replace: true });
     } else {
       const alertEmailR = document.getElementById('alert');
       alertEmailR.innerHTML = '<span class="red"> Email or password invalid </span>';
