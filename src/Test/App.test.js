@@ -11,7 +11,7 @@ describe('Test component App', () => {
   test('renders react component', async () => {
     let root;
     act(() => {
-      root = create(<App value={1} />);
+      root = create(<App />);
     });
     expect(root.toJSON()).toMatchSnapshot();
   });
