@@ -9,8 +9,7 @@ import style from './NavBarBlog.module.css';
 
 export function NavBarBlog() {
   const navigate = useNavigate();
-  const btnLogout = (e) => {
-    e.preventDefault();
+  const handlerLogout = () => {
     logOut();
     navigate('/');
   };
@@ -24,10 +23,10 @@ export function NavBarBlog() {
         <li>
           <button
             type="button"
-            onClick={(e) => btnLogout(e)}
+            onClick={handlerLogout}
             className={style.btnLogout}
           >
-            <img className={style.iconLogOut} src={iconLogOut} alt="icon-logout" />
+            <img className={style.iconLogOutC} src={iconLogOut} alt="icon-logout" />
             LogOut
           </button>
         </li>

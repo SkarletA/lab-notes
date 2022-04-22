@@ -30,7 +30,7 @@ exports[`Test component Blog render component Blog 1`] = `
         >
           <img
             alt="icon-logout"
-            className="iconLogOut"
+            className="iconLogOutC"
             src="Log_Out.svg"
           />
           LogOut

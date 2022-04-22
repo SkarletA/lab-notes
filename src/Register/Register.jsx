@@ -93,7 +93,7 @@ export function Register({ openModalRegister, closeModalRegister }) {
         <form className={style.formRegister}>
           <input
             className={style.inputName}
-            id="emailR"
+            id="inputName"
             type="text"
             placeholder="Name: "
           />

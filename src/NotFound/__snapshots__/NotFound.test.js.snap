@@ -28,7 +28,7 @@ exports[`Test component NotFound render component NotFound 1`] = `
         >
           <img
             alt="icon-logout"
-            className="iconLogOut"
+            className="iconLogOutC"
             src="Log_Out.svg"
           />
           LogOut

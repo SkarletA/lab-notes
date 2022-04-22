@@ -29,24 +29,17 @@ describe(('Test component NavBarBlog'), () => {
     expect(testInstance.findByProps({ className: 'titleApp' }).children).toEqual(['BlogSks']);
   });
   test('value when clicked', () => {
-    const testRender = create(
+    const render = create(
       <Router>
         <NavBarBlog />
       </Router>,
     );
 
-    const testInstance = testRender.root;
-    const e = { preventDefault: () => {} };
-    jest.spyOn(e, 'preventDefault');
-    // const e = jest.fn();
+    const testInstance = render.root;
     const button = testInstance.findByType('button');
-    // act(() => {
-    //   button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-    // });
     button.props.onClick();
-
-    expect(e).toHaveBeenCalledTimes(1);
-    expect(button.props.children).toBe('function');
-    // expect(e).toBeCalled();
+    // const a = button.props.onClick();
+    // expect(a).toHaveBeenCalledTimes(1);
+    // expect(testInstance.findByType('button').children).toEqual(['LogOut']);
   });
 });
