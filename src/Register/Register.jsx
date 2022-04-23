@@ -1,10 +1,12 @@
-/* eslint-disable import/prefer-default-export */
 import React, { useState } from 'react';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import { getAuth } from 'firebase/auth';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
 import style from './Register.module.css';
-import { loginGoogle } from '../Firebase/firebase-auth';
 import { app } from '../Firebase/firebaseconfig';
 import '../Firebase/firebase';
 import icon from '../img/icon-google.svg';
@@ -14,6 +16,8 @@ export function Register({ openModalRegister, closeModalRegister }) {
   const navigate = useNavigate();
 
   const auth = getAuth(app);
+  auth.languageCode = 'in';
+  const provider = new GoogleAuthProvider();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [
@@ -51,7 +55,7 @@ export function Register({ openModalRegister, closeModalRegister }) {
 
   const google = async (e) => {
     e.preventDefault();
-    const userGoogle = await loginGoogle();
+    const userGoogle = await signInWithPopup(auth, provider);
     if (!userGoogle) {
       const alertGoogle = document.getElementById('alertGoogle');
       alertGoogle.innerHTML = '<span class="red"> failed to login</span>';
@@ -65,7 +69,6 @@ export function Register({ openModalRegister, closeModalRegister }) {
     const expEmail = /^\w+([.+-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/;
     const expPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
     if (expEmail.test(email) && expPassword.test(password)) {
-      // eslint-disable-next-line no-shadow
       await createUserWithEmailAndPassword(email, password);
       navigate('/blog', { replace: true });
     } else {

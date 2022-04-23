@@ -1,9 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable no-undef */
-// import { render } from '@testing-library/react';
-// import { act } from "react-dom/test-utils";
-// eslint-disable-next-line import/no-unresolved
 import { create, act } from 'react-test-renderer';
 import App from '../App/App';
 
