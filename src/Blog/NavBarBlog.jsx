@@ -1,17 +1,23 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { logOut } from '../Firebase/firebase-auth';
-// import { Link } from "react-router-dom";
+import {
+  getAuth,
+  signOut,
+} from 'firebase/auth';
+import { app } from '../Firebase/firebaseconfig';
 
 import iconLogOut from '../img/Log_Out.svg';
 import style from './NavBarBlog.module.css';
 
-export function NavBarBlog() {
+const NavBarBlog = ({ onClickButton }) => {
   const navigate = useNavigate();
+  const auth = getAuth(app);
+
   const handlerLogout = () => {
-    logOut();
+    signOut(auth);
     navigate('/');
+    onClickButton();
   };
   return (
     <nav>
@@ -33,4 +39,5 @@ export function NavBarBlog() {
       </ul>
     </nav>
   );
-}
+};
+export default NavBarBlog;

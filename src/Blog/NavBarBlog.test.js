@@ -3,8 +3,9 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { create, act } from 'react-test-renderer';
+import { fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { NavBarBlog } from './NavBarBlog';
+import NavBarBlog from './NavBarBlog';
 
 describe(('Test component NavBarBlog'), () => {
   test('render component NavBarBlog', () => {
@@ -28,18 +29,18 @@ describe(('Test component NavBarBlog'), () => {
     const testInstance = testRender.root;
     expect(testInstance.findByProps({ className: 'titleApp' }).children).toEqual(['BlogSks']);
   });
+
+  const mockOnClick = jest.fn();
+
   test('value when clicked', () => {
-    const render = create(
+    const componentNav = render(
       <Router>
-        <NavBarBlog />
+        <NavBarBlog onClickButton={mockOnClick} />
       </Router>,
     );
 
-    const testInstance = render.root;
-    const button = testInstance.findByType('button');
-    button.props.onClick();
-    // const a = button.props.onClick();
-    // expect(a).toHaveBeenCalledTimes(1);
-    // expect(testInstance.findByType('button').children).toEqual(['LogOut']);
+    const button = componentNav.getByText('LogOut');
+    fireEvent.click(button);
+    expect(mockOnClick).toHaveBeenCalledTimes(1);
   });
 });

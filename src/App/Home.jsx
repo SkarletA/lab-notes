@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { Main } from '../Main/Main';
 import { NavBar } from '../NavBar/NavBar';

@@ -5,10 +5,8 @@ import {
   Route,
 } from 'react-router-dom';
 import './App.module.css';
-// import { Main } from '../Main/Main';
-// import { NavBar } from '../NavBar/NavBar';
 import { Blog } from '../Blog/Blog';
-import { NotFound } from '../NotFound/NotFound';
+import NotFound from '../NotFound/NotFound';
 import { Home } from './Home';
 
 export default function App() {

@@ -1,6 +1,5 @@
-/* eslint-disable import/prefer-default-export */
 import React, { useEffect, useState } from 'react';
-import { NavBarBlog } from './NavBarBlog';
+import NavBarBlog from './NavBarBlog';
 import style from './Blog.module.css';
 import { BlogModal } from './BlogModal';
 import {

@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import style from './ModalDelete.module.css';
 import {
@@ -17,19 +16,22 @@ export function ModalDelete({ openModalDelete, closeModalDelete, currentId }) {
   return (
     <section className={style.modalDelete}>
       <div className={style.popupDelete}>
-        <p className={style.titleDelete}>Are you sure want to delete this note? </p>
-        <div className={style.btnsDelete}>
+        <p className={style.titleDelete}>Are you sure you want to delete this note? </p>
+        <div data-testid="btns" className={style.btnsDelete}>
           <button
+            id="btnDelete"
             type="button"
             className={style.btnDelete}
             onClick={() => {
               onDeleteBlog(currentId);
-              closeModalDelete();
+              // closeModalDelete();
             }}
           >
             Delete
           </button>
           <button
+            name="btn-cancel"
+            id="cancel"
             type="button"
             className={style.btnNoDelete}
             onClick={closeModalDelete}

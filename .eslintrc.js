@@ -18,6 +18,14 @@ module.exports = {
     'react',
   ],
   rules: {
+    'linebreak-style': 0,
+    'prefer-destructuring': 0,
+    'import/extensions': 0,
+    'import/prefer-default-export': 0,
     'react/jsx-filename-extension': 'off',
+    'react/function-component-definition': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'no-undef': 'off',
+    'np-shadow': 'off',
   },
 };

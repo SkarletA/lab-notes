@@ -2,8 +2,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { getAuth } from 'firebase/auth';
-import { loginGoogle } from '../Firebase/firebase-auth';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
 import icon from '../img/icon-google.svg';
 import style from './Login.module.css';
 import { app } from '../Firebase/firebaseconfig';
@@ -12,7 +15,8 @@ import { app } from '../Firebase/firebaseconfig';
 export function Login({ openModal, closeModal }) {
   const navigate = useNavigate();
   const auth = getAuth(app);
-  // const provider = new GoogleAuthProvider();
+  auth.languageCode = 'in';
+  const provider = new GoogleAuthProvider();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,10 +26,6 @@ export function Login({ openModal, closeModal }) {
     loading,
     error,
   ] = useSignInWithEmailAndPassword(auth);
-
-  // const [
-  //   signInWithGoogle,
-  // ] = useSignInWithGoogle(auth);
 
   if (error) {
     return (
@@ -54,7 +54,7 @@ export function Login({ openModal, closeModal }) {
 
   const google = async (e) => {
     e.preventDefault();
-    const userGoogle = await loginGoogle();
+    const userGoogle = await signInWithPopup(auth, provider);
     if (!userGoogle) {
       const alertGoogle = document.getElementById('alertGoogle');
       alertGoogle.innerHTML = '<span class="red"> failed to login</span>';
