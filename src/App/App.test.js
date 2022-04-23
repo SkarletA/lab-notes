@@ -1,5 +1,5 @@
 import { create, act } from 'react-test-renderer';
-import App from '../App/App';
+import App from './App';
 
 describe('Test component App', () => {
   test('renders react component', async () => {

@@ -39,13 +39,8 @@ describe(('Test component NavBarBlog'), () => {
       </Router>,
     );
 
-    // const testInstance = render.root;
     const button = componentNav.getByText('LogOut');
     fireEvent.click(button);
-
     expect(mockOnClick).toHaveBeenCalledTimes(1);
-    // const a = button.props.onClick();
-    // expect(a).toHaveBeenCalledTimes(1);
-    // expect(testInstance.findByType('button').children).toEqual(['LogOut']);
   });
 });
