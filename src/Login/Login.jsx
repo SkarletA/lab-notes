@@ -5,6 +5,7 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import {
   getAuth,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithPopup,
 } from 'firebase/auth';
 import icon from '../img/icon-google.svg';
@@ -22,7 +23,6 @@ export function Login({ openModal, closeModal }) {
   const [password, setPassword] = useState('');
   const [
     signInWithEmailAndPassword,
-    user,
     loading,
     error,
   ] = useSignInWithEmailAndPassword(auth);
@@ -38,16 +38,6 @@ export function Login({ openModal, closeModal }) {
   }
   if (loading) {
     return <p>Loading...</p>;
-  }
-  if (user) {
-    return (
-      <div>
-        <p>
-          Signed In User:
-          {user.email}
-        </p>
-      </div>
-    );
   }
 
   if (!openModal) return null;
@@ -70,7 +60,13 @@ export function Login({ openModal, closeModal }) {
 
     if (expEmail.test(email) && expPassword.test(password)) {
       await signInWithEmailAndPassword(email, password);
-      navigate('/blog', { replace: true });
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const uid = user.uid;
+          console.log(uid, user);
+          navigate('/blog', { replace: true });
+        }
+      });
     } else {
       const alertEmailR = document.getElementById('alert');
       alertEmailR.innerHTML = '<span class="red"> Email or password invalid </span>';
