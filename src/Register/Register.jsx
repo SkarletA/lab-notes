@@ -22,7 +22,6 @@ export function Register({ openModalRegister, closeModalRegister }) {
   const [password, setPassword] = useState('');
   const [
     createUserWithEmailAndPassword,
-    user,
     loading,
     error,
   ] = useCreateUserWithEmailAndPassword(auth);
@@ -39,16 +38,6 @@ export function Register({ openModalRegister, closeModalRegister }) {
   }
   if (loading) {
     return <p>Loading...</p>;
-  }
-  if (user) {
-    return (
-      <div>
-        <p>
-          Registered User:
-          {user.email}
-        </p>
-      </div>
-    );
   }
 
   if (!openModalRegister) return null;
@@ -69,8 +58,11 @@ export function Register({ openModalRegister, closeModalRegister }) {
     const expEmail = /^\w+([.+-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/;
     const expPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
     if (expEmail.test(email) && expPassword.test(password)) {
-      await createUserWithEmailAndPassword(email, password);
-      navigate('/blog', { replace: true });
+      const user = await createUserWithEmailAndPassword(email, password);
+      console.log(user);
+      if (user) {
+        navigate('/blog', { replace: true });
+      }
     } else {
       const alertEmailR = document.getElementById('alertEmailR');
       alertEmailR.innerHTML = '<span class="red"> Email or password invalid </span>';

@@ -4,8 +4,8 @@ import { Login } from '../Login/Login';
 import style from './NavBar.module.css';
 import { Register } from '../Register/Register';
 
-// eslint-disable-next-line jsx-a11y/anchor-is-valid
-export function NavBar() {
+// eslint-disable-next-line react/prop-types
+export function NavBar({ onClickButton }) {
   const [openModal, setOpenModal] = useState(false);
   const [openModalRegister, setOpenModalRegister] = useState(false);
   return (
@@ -18,7 +18,10 @@ export function NavBar() {
         <li>
           <button
             type="button"
-            onClick={() => { setOpenModalRegister(true); }}
+            onClick={() => {
+              setOpenModalRegister(true);
+              onClickButton();
+            }}
             className={style.linkRegister}
           >
             REGISTER
@@ -27,7 +30,10 @@ export function NavBar() {
         <li>
           <button
             type="button"
-            onClick={() => { setOpenModal(true); }}
+            onClick={() => {
+              setOpenModal(true);
+              onClickButton();
+            }}
             className={style.linkLogin}
           >
             LOGIN

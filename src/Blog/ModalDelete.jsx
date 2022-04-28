@@ -24,7 +24,7 @@ export function ModalDelete({ openModalDelete, closeModalDelete, currentId }) {
             className={style.btnDelete}
             onClick={() => {
               onDeleteBlog(currentId);
-              // closeModalDelete();
+              closeModalDelete();
             }}
           >
             Delete

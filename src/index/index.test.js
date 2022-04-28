@@ -7,7 +7,7 @@ describe('Application root', () => {
     const container = document.createElement('div');
     container.id = 'root';
     document.body.appendChild(container);
-    require('./index.js');
+    require('../index.js');
     expect(mockCreateRootFn).toHaveBeenCalledWith(container);
   });
 });
