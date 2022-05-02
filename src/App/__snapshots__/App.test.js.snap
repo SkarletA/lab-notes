@@ -53,12 +53,6 @@ exports[`Test component App renders react component 1`] = `
     >
       Create an attractive and original blog
     </p>
-    <button
-      className="createBlog"
-      type="button"
-    >
-      CREATE A  BLOG
-    </button>
     <div>
       <img
         alt="img-principal"

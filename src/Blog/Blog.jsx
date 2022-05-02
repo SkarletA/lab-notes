@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import NavBarBlog from './NavBarBlog';
 import style from './Blog.module.css';
@@ -13,7 +14,7 @@ import { db } from '../Firebase/firebaseconfig';
 import iDelete from '../img/icon-delete.svg';
 import iEdit from '../img/icon-lapiz.svg';
 import { ModalDelete } from './ModalDelete';
-
+// eslint-disable-next-line react/prop-types
 export function Blog() {
   const [openModal, setOpenModal] = useState(false);
   const [openModalDelete, setOpenModalDelete] = useState(false);
@@ -50,6 +51,10 @@ export function Blog() {
       <NavBarBlog />
       <section className={style.blog}>
         <div className="container">
+          {/* <p>
+            Welcome
+            {isAuth.displayName}
+          </p> */}
           <button
             type="button"
             className={style.createBlog}
