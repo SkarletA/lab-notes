@@ -8,12 +8,6 @@ export function Main() {
     <section className={style.sectionSlogan}>
       <h2 className={style.slogan}>Write about what you like and passionate</h2>
       <p className={style.sloganSecond}>Create an attractive and original blog</p>
-      <button
-        type="button"
-        className={style.createBlog}
-      >
-        CREATE A  BLOG
-      </button>
       <div>
         <img className={style.imgPrincipal} src={image} alt="img-principal" />
       </div>
