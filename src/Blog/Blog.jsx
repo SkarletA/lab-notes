@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import NavBarBlog from './NavBarBlog';
@@ -15,7 +16,7 @@ import iDelete from '../img/icon-delete.svg';
 import iEdit from '../img/icon-lapiz.svg';
 import { ModalDelete } from './ModalDelete';
 // eslint-disable-next-line react/prop-types
-export function Blog() {
+export function Blog({ isAuth }) {
   const [openModal, setOpenModal] = useState(false);
   const [openModalDelete, setOpenModalDelete] = useState(false);
 
@@ -51,10 +52,11 @@ export function Blog() {
       <NavBarBlog />
       <section className={style.blog}>
         <div className="container">
-          {/* <p>
-            Welcome
-            {isAuth.displayName}
-          </p> */}
+          <ul>
+            <p className={style.name}>
+              Welcome!! {(isAuth.email)}
+            </p>
+          </ul>
           <button
             type="button"
             className={style.createBlog}

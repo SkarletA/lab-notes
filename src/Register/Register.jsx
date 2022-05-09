@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import {
+  createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  updateProfile,
 } from 'firebase/auth';
 import style from './Register.module.css';
 import { app } from '../Firebase/firebaseconfig';
-import '../Firebase/firebase';
 import icon from '../img/icon-google.svg';
 
 // eslint-disable-next-line react/prop-types
@@ -18,27 +18,9 @@ export function Register({ openModalRegister, closeModalRegister }) {
   const auth = getAuth(app);
   auth.languageCode = 'in';
   const provider = new GoogleAuthProvider();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [
-    createUserWithEmailAndPassword,
-    loading,
-    error,
-  ] = useCreateUserWithEmailAndPassword(auth);
-
-  if (error) {
-    return (
-      <div>
-        <p>
-          Error:
-          {error.message}
-        </p>
-      </div>
-    );
-  }
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
   if (!openModalRegister) return null;
 
@@ -53,20 +35,26 @@ export function Register({ openModalRegister, closeModalRegister }) {
     }
   };
 
+  const updateUsers = async (userName) => {
+    await updateProfile(auth.currentUser, {
+      displayName: userName,
+    });
+  };
+  console.log(name);
+
   const submitRegistration = async (e) => {
     e.preventDefault();
     const expEmail = /^\w+([.+-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/;
     const expPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
     if (expEmail.test(email) && expPassword.test(password)) {
-      const user = await createUserWithEmailAndPassword(email, password);
+      const user = await createUserWithEmailAndPassword(auth, email, password);
       console.log(user);
-      if (user) {
-        navigate('/blog', { replace: true });
-      }
+      navigate('/blog', { replace: true });
     } else {
       const alertEmailR = document.getElementById('alertEmailR');
       alertEmailR.innerHTML = '<span class="red"> Email or password invalid </span>';
     }
+    await updateUsers(name);
   };
   return (
     <section
@@ -91,6 +79,7 @@ export function Register({ openModalRegister, closeModalRegister }) {
             id="inputName"
             type="text"
             placeholder="Name: "
+            onChange={(e) => setName(e.target.value)}
           />
           <input
             className={style.inputEmail}
