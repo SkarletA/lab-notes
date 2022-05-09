@@ -44,6 +44,13 @@ exports[`Test component Blog render component Blog 1`] = `
     <div
       className="container"
     >
+      <ul>
+        <p
+          className="name"
+        >
+          Welcome!! 
+        </p>
+      </ul>
       <button
         className="createBlog"
         onClick={[Function]}

@@ -35,6 +35,9 @@
   background-color: #7D1935;
   border: 0;
 }
+.name {
+  color: white;
+}
 .iconLogoutC {
   height: 1.7em;
 }

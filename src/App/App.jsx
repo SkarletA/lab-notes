@@ -13,7 +13,6 @@ import './App.module.css';
 import { Blog } from '../Blog/Blog';
 import NotFound from '../NotFound/NotFound';
 import { Home } from './Home';
-import { Principal } from './Principal';
 
 export default function App() {
   const [isAuth, setIsAuth] = useState(null);
@@ -33,8 +32,8 @@ export default function App() {
         isAuth
           ? (
             <Routes>
-              <Route path="/" element={<Principal />} />
-              <Route path="/blog" element={<Blog name={isAuth} />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/blog" element={<Blog isAuth={isAuth} />} />
             </Routes>
           )
           : (
