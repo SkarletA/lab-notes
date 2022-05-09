@@ -32,13 +32,13 @@ export default function App() {
         isAuth
           ? (
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/lab-notes" element={<Home />} />
               <Route path="/blog" element={<Blog isAuth={isAuth} />} />
             </Routes>
           )
           : (
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/lab-notes" element={<Home />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           )

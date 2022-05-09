@@ -17,7 +17,7 @@ const NavBarBlog = ({ onClickButton }) => {
 
   const handlerLogout = () => {
     signOut(auth);
-    navigate('/');
+    navigate('/lab-notes');
     onClickButton();
   };
   return (
