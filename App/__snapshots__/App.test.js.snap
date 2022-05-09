@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test component App renders react component 1`] = `
+<section>
+  <nav>
+    <ul
+      className="navbar"
+    >
+      <ul
+        className="logoTitle"
+      >
+        <img
+          alt="logo"
+          className="logo"
+          src="https://svgshare.com/i/g5e.svg"
+        />
+        <h1
+          className="titleApp"
+        >
+          BlogSks
+        </h1>
+      </ul>
+      <li>
+        <button
+          className="linkRegister"
+          onClick={[Function]}
+          type="button"
+        >
+          REGISTER
+        </button>
+      </li>
+      <li>
+        <button
+          className="linkLogin"
+          onClick={[Function]}
+          type="button"
+        >
+          LOGIN
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <section
+    className="sectionSlogan"
+  >
+    <h2
+      className="slogan"
+    >
+      Write about what you like and passionate
+    </h2>
+    <p
+      className="sloganSecond"
+    >
+      Create an attractive and original blog
+    </p>
+    <div>
+      <img
+        alt="img-principal"
+        className="imgPrincipal"
+        src="image-principal.svg"
+      />
+    </div>
+  </section>
+</section>
+`;

@@ -1,0 +1,65 @@
+.viewBlog {
+  display: grid;
+  
+}
+
+.blog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+.createBlog {
+  background-color: #7D1935;
+  border: 0.2em solid white;
+  border-radius: 0.8em;
+  color: white;
+  cursor: pointer;
+  height: 3em;
+  margin:2em;
+  width: 15em;
+}
+.allBlogs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.cardBlogs {
+  background-image: url("../img/Icon-blog.svg");
+  background-repeat: no-repeat;
+  height: 15em;
+  width: 13em;
+  display: flex;
+  flex-direction: column;
+}
+.titleBlogNote {
+  color: #7D1935;
+  margin-top: 2.5em;
+  margin-left: 1.5em;
+  font-size: 0.9em;
+}
+.messageNote {
+  display: flex;
+  align-items: flex-start;
+  margin-left: 2.4em;
+  font-size: 0.6em;
+}
+.btns{
+  display: flex;
+  justify-content: center;
+}
+.iconDelete, .iconEdit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 2.2em;
+  width: 3em;
+  border: 0;
+  background-color: #FCEBE1;
+  cursor: pointer;
+  margin-top: 1em;
+}
