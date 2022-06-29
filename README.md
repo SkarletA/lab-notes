@@ -96,11 +96,13 @@ Para realizar dicho proyecto se llevó a cabo un prototipo de baja y alta fideli
 ### (Techs Skills)
 - [_Trello_](https://trello.com/b/PCPflINL/labnote)
 - [_Figma_](https://www.figma.com/file/I1MjjCtLUU4wzCFopbSqcd/LabNotes?node-id=0%3A1)
+- [_Maze_](https://t.maze.co/90448180)
 - HTML
 - CSS
 - JS
 - Firebase
 - Jest
+- React
 
 ## 7. Conocimientos reforzados
 
