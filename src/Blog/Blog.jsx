@@ -53,7 +53,7 @@ export function Blog({ isAuth }) {
         docs.push({ ...docE.data(), id: docE.id });
         setBlogs(docs);
       });
-    }, 1000);
+    }, 100);
   };
 
   useEffect(() => {
