@@ -36,16 +36,27 @@
   flex-direction: column;
 }
 .titleBlogNote {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
   color: #7D1935;
-  margin-top: 2.5em;
-  margin-left: 1.5em;
+  margin-top: 2.4em;
+  margin-left: 1.8em;
   font-size: 0.9em;
+  overflow-y: scroll;
+  width: 10em;
+  height: 1.5em;
+  text-align: center;
+  padding: 0.3;
 }
 .messageNote {
   display: flex;
   align-items: flex-start;
   margin-left: 2.4em;
   font-size: 0.6em;
+  overflow-y: scroll;
+  height: 3.3em;
+  width: 16em;
+  padding: 0.5em;
 }
 .btns{
   display: flex;
@@ -61,5 +72,12 @@
   border: 0;
   background-color: #FCEBE1;
   cursor: pointer;
-  margin-top: 1em;
+  margin-top: 0.5em;
+}
+
+.date {
+  color: #7D1935;
+  font-size: 0.5em;
+  margin-bottom: 0;
+  margin: 0;
 }

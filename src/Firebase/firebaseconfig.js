@@ -2,13 +2,12 @@
 import { initializeApp, getFirestore } from './firebase.js';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyD5VQQ8kNNsmzpvfPqDjjp-jzSTjYLhAwQ',
-  authDomain: 'blogsks-73d09.firebaseapp.com',
-  projectId: 'blogsks-73d09',
-  storageBucket: 'blogsks-73d09.appspot.com',
-  messagingSenderId: '332161822860',
-  appId: '1:332161822860:web:a9f12c05074c4bc314cba9',
-  measurementId: 'G-VQF6RLVJXJ',
+  apiKey: 'AIzaSyBmfekLPUizLaV1aL9aaxunVuosgav80Y8',
+  authDomain: 'blogsks-49a2d.firebaseapp.com',
+  projectId: 'blogsks-49a2d',
+  storageBucket: 'blogsks-49a2d.appspot.com',
+  messagingSenderId: '1035768893611',
+  appId: '1:1035768893611:web:0dfa0aebf8c0d8a9a9a7ee',
 };
 
 export const app = initializeApp(firebaseConfig);
