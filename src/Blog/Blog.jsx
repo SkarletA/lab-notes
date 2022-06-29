@@ -7,9 +7,12 @@ import { BlogModal } from './BlogModal';
 import {
   collection,
   addDoc,
-  onSnapshot,
+  getDocs,
+  // onSnapshot,
   doc,
   updateDoc,
+  query,
+  where,
 } from '../Firebase/firebase';
 import { db } from '../Firebase/firebaseconfig';
 import iDelete from '../img/icon-delete.svg';
@@ -25,26 +28,31 @@ export function Blog({ isAuth }) {
 
   const addOrEditBlog = async (values) => {
     if (currentId === '') {
-      await addDoc(collection(db, 'blogs'), values);
+      const userId = isAuth.uid;
+      const newValues = { ...values, userId };
+      await addDoc(collection(db, 'blogs'), newValues);
     } else {
-      await updateDoc(doc(db, 'blogs', currentId), values);
+      await updateDoc(doc(db, 'blogs', currentId), newValues);
     }
     setCurrentId('');
   };
 
-  const getBlogs = async () => {
-    onSnapshot(collection(db, 'blogs'), (querySnapshot) => {
-      const docs = [];
-      // eslint-disable-next-line no-shadow
-      querySnapshot.forEach((doc) => {
-        docs.push({ ...doc.data(), id: doc.id });
-      });
+  const displayName = isAuth.displayName.toUpperCase();
+  const userId = isAuth.uid;
+
+  const getBlogs = async (uid) => {
+    const q = query(collection(db, 'blogs'), where('userId', '==', uid));
+    const querySnapshot = await getDocs(q);
+    const docs = [];
+    // eslint-disable-next-line no-shadow
+    querySnapshot.forEach((doc) => {
+      docs.push({ ...doc.data(), id: doc.id });
       setBlogs(docs);
     });
   };
 
   useEffect(() => {
-    getBlogs();
+    getBlogs(userId);
   }, []);
 
   return (
@@ -54,7 +62,7 @@ export function Blog({ isAuth }) {
         <div className="container">
           <ul>
             <p className={style.name}>
-              Welcome!! {(isAuth.email)}
+              WELCOME!! {displayName}
             </p>
           </ul>
           <button
@@ -69,9 +77,9 @@ export function Blog({ isAuth }) {
           {blogs.map((blog) => (
             <div className={style.cardBlogs} key={blog.id}>
               <h4 className={style.titleBlogNote}>{blog.tittle}</h4>
-              <p className={style.messageNote}>
+              <div className={style.messageNote}>
                 {blog.message}
-              </p>
+              </div>
               <div className={style.btns}>
                 <button
                   type="button"

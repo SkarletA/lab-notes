@@ -25,5 +25,6 @@ export {
   onSnapshot,
   collection,
   addDoc,
-
+  query,
+  where,
 } from 'firebase/firestore';

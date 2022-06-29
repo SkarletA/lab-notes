@@ -39,6 +39,7 @@ export default function App() {
           : (
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/lab-notes" element={<Home />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           )
