@@ -22,14 +22,18 @@ import { ModalDelete } from './ModalDelete';
 export function Blog({ isAuth }) {
   const [openModal, setOpenModal] = useState(false);
   const [openModalDelete, setOpenModalDelete] = useState(false);
+  // const [refreshData, setRefreshData] = useState(false);
 
   const [blogs, setBlogs] = useState([]);
   const [currentId, setCurrentId] = useState('');
 
   const addOrEditBlog = async (values) => {
+    const userId = isAuth.uid;
+    const date = new Date().toDateString();
+    const newValues = { ...values, userId };
+    newValues.date = date;
+
     if (currentId === '') {
-      const userId = isAuth.uid;
-      const newValues = { ...values, userId };
       await addDoc(collection(db, 'blogs'), newValues);
     } else {
       await updateDoc(doc(db, 'blogs', currentId), newValues);
@@ -44,16 +48,18 @@ export function Blog({ isAuth }) {
     const q = query(collection(db, 'blogs'), where('userId', '==', uid));
     const querySnapshot = await getDocs(q);
     const docs = [];
-    // eslint-disable-next-line no-shadow
-    querySnapshot.forEach((doc) => {
-      docs.push({ ...doc.data(), id: doc.id });
-      setBlogs(docs);
-    });
+    setTimeout(() => {
+      querySnapshot.forEach((docE) => {
+        docs.push({ ...docE.data(), id: docE.id });
+        setBlogs(docs);
+      });
+    }, 1000);
   };
 
   useEffect(() => {
     getBlogs(userId);
-  }, []);
+  });
+  // console.log(refreshData);
 
   return (
     <section className={style.viewBlog}>
@@ -77,6 +83,7 @@ export function Blog({ isAuth }) {
           {blogs.map((blog) => (
             <div className={style.cardBlogs} key={blog.id}>
               <h4 className={style.titleBlogNote}>{blog.tittle}</h4>
+              <p className={style.date}>{blog.date}</p>
               <div className={style.messageNote}>
                 {blog.message}
               </div>
